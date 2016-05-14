@@ -1,1 +1,1 @@
-json.extract! @<%= singular_table_name %>, <%= attributes_list_with_timestamps %>
+json.merge! @<%= singular_table_name %>.attributes
