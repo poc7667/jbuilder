@@ -33,10 +33,8 @@ class <%= controller_class_name %>Controller < ApplicationController
 
     respond_to do |format|
       if @<%= orm_instance.save %>
-        format.html { redirect_to @<%= singular_table_name %>, notice: <%= "'#{human_name} was successfully created.'" %> }
         format.json { render :show, status: :created, location: <%= "@#{singular_table_name}" %> }
       else
-        format.html { render :new }
         format.json { render json: <%= "@#{orm_instance.errors}" %>, status: :unprocessable_entity }
       end
     end
@@ -47,10 +45,8 @@ class <%= controller_class_name %>Controller < ApplicationController
   def update
     respond_to do |format|
       if @<%= orm_instance.update("#{singular_table_name}_params") %>
-        format.html { redirect_to @<%= singular_table_name %>, notice: <%= "'#{human_name} was successfully updated.'" %> }
-        format.json { render :show, status: :ok, location: <%= "@#{singular_table_name}" %> }
+        format.json { render :show, status: :ok}
       else
-        format.html { render :edit }
         format.json { render json: <%= "@#{orm_instance.errors}" %>, status: :unprocessable_entity }
       end
     end
@@ -61,7 +57,6 @@ class <%= controller_class_name %>Controller < ApplicationController
   def destroy
     @<%= orm_instance.destroy %>
     respond_to do |format|
-      format.html { redirect_to <%= index_helper %>_url, notice: <%= "'#{human_name} was successfully destroyed.'" %> }
       format.json { head :no_content }
     end
   end
