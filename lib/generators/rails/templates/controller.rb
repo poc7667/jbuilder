@@ -33,7 +33,7 @@ class <%= controller_class_name %>Controller < ApplicationController
 
     respond_to do |format|
       if @<%= orm_instance.save %>
-        format.json { render :show, status: :created, location: <%= "@#{singular_table_name}" %> }
+        format.json { render :show, status: :created %> }
       else
         format.json { render json: <%= "@#{orm_instance.errors}" %>, status: :unprocessable_entity }
       end

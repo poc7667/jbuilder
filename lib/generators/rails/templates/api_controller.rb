@@ -23,7 +23,7 @@ class <%= controller_class_name %>Controller < ApplicationController
     @<%= singular_table_name %> = <%= orm_class.build(class_name, "#{singular_table_name}_params") %>
 
     if @<%= orm_instance.save %>
-      render :show, status: :created, location: <%= "@#{singular_table_name}" %>
+      render :show, status: :created %>
     else
       render json: <%= "@#{orm_instance.errors}" %>, status: :unprocessable_entity
     end
@@ -33,7 +33,7 @@ class <%= controller_class_name %>Controller < ApplicationController
   # PATCH/PUT <%= route_url %>/1.json
   def update
     if @<%= orm_instance.update("#{singular_table_name}_params") %>
-      render :show, status: :ok, location: <%= "@#{singular_table_name}" %>
+      render :show, status: :ok %>
     else
       render json: <%= "@#{orm_instance.errors}" %>, status: :unprocessable_entity
     end
