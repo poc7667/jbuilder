@@ -23,7 +23,7 @@ class <%= controller_class_name %>Controller < ApplicationController
     @<%= singular_table_name %> = <%= orm_class.build(class_name, "#{singular_table_name}_params") %>
 
     if @<%= orm_instance.save %>
-      render :show, status: :created %>
+      render :show, status: :created
     else
       render json: <%= "@#{orm_instance.errors}" %>, status: :unprocessable_entity
     end
